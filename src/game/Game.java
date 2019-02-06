@@ -17,10 +17,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 
-/**
- *
- * @author Liam
- */
+
 public class Game extends Canvas implements Runnable{
     
     public static final int WIDTH = 320;
@@ -43,9 +40,17 @@ public class Game extends Canvas implements Runnable{
     private Player p;
     private Controller c;
     private Textures tex;
+    private Menu menu;
     
     public LinkedList<FriendlyEntity> fEnt;
     public LinkedList<EnemyEntity> eEnt;
+    
+    private enum STATE{
+        MENU,
+        GAME
+    };
+    
+    private STATE State = STATE.MENU;
     
     //initialise
     public void init(){
@@ -65,6 +70,7 @@ public class Game extends Canvas implements Runnable{
         tex = new Textures(this);
         p = new Player(200, 200, tex);
         c = new Controller(tex, this);
+        menu = new Menu();
         
         //key loop
         this.addKeyListener(new KeyInput(this));
@@ -135,8 +141,12 @@ public class Game extends Canvas implements Runnable{
     
     //Everything in the game that updates
     private void tick(){
-        p.tick();
-        c.tick();
+        
+        //Only run in GAME state
+        if(State == STATE.GAME){
+            p.tick();
+            c.tick();
+        }
         
         if(enemyKilled >= enemyCount){
             enemyCount +=2;
@@ -164,8 +174,13 @@ public class Game extends Canvas implements Runnable{
         g.drawImage(background, 0, 0, null);
         
         
-        p.render(g);
-        c.render(g);
+        //only renders in Game state 
+        if(State == STATE.GAME){
+            p.render(g);
+            c.render(g);
+        }else if(State == STATE.MENU){
+            menu.render(g);
+        }
         
         g.dispose();
         bs.show();
@@ -209,17 +224,19 @@ public class Game extends Canvas implements Runnable{
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
         
-        if(key == KeyEvent.VK_RIGHT){
-            p.setVelX(0);
-        }else if(key == KeyEvent.VK_LEFT){
-            p.setVelX(0);
-        }else if(key == KeyEvent.VK_DOWN){
-            p.setVelY(0);
-        }else if(key == KeyEvent.VK_UP){
-            p.setVelY(0);
-        }else if(key == KeyEvent.VK_SPACE){
-            isShooting = false;
-        }
+        if(State == STATE.GAME){
+             if(key == KeyEvent.VK_RIGHT){
+                 p.setVelX(0);
+             }else if(key == KeyEvent.VK_LEFT){
+                 p.setVelX(0);
+             }else if(key == KeyEvent.VK_DOWN){
+                 p.setVelY(0);
+             }else if(key == KeyEvent.VK_UP){
+                 p.setVelY(0);
+             }else if(key == KeyEvent.VK_SPACE){
+                 isShooting = false;
+             } 
+        } 
     }
     
     public BufferedImage getSpriteSheet(){
