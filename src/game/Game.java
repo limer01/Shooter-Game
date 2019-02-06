@@ -45,12 +45,14 @@ public class Game extends Canvas implements Runnable{
     public LinkedList<FriendlyEntity> fEnt;
     public LinkedList<EnemyEntity> eEnt;
     
-    private enum STATE{
+    
+    //*******Change these to getters and setters
+    public static enum STATE{
         MENU,
         GAME
     };
     
-    private STATE State = STATE.MENU;
+    public static STATE State = STATE.MENU;
     
     //initialise
     public void init(){
@@ -74,6 +76,7 @@ public class Game extends Canvas implements Runnable{
         
         //key loop
         this.addKeyListener(new KeyInput(this));
+        this.addMouseListener(new MouseInput());
         
         c.createEnemy(enemyCount);
         
