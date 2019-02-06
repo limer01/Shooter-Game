@@ -39,7 +39,7 @@ public class Controller {
     }
     
     public void tick(){
-        //Friendly Entity
+        //Friendly Entit
         for(int i = 0; i < friendlyEntityList.size(); i++){
             fEnt = friendlyEntityList.get(i);
             
