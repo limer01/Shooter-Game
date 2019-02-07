@@ -5,6 +5,7 @@
  */
 package game;
 
+import classes.EnemyEntity;
 import classes.FriendlyEntity;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -18,11 +19,16 @@ public class Player extends GameObject implements FriendlyEntity{
     private double velY = 0;
     
     private Textures tex;
+    private Game game;
+    private Controller c;
     
     
-    public Player(double x, double y, Textures tex){
+    
+    public Player(double x, double y, Textures tex, Game game, Controller c){
         super(x, y);
         this.tex = tex;
+        this.game = game;
+        this.c = c;
     }
     
     
@@ -39,6 +45,17 @@ public class Player extends GameObject implements FriendlyEntity{
             y = 0;
         if(y >= 480 - 32)
             y = 480 - 32;
+        
+        for(int i = 0; i < game.eEnt.size(); i++){
+            
+            EnemyEntity tempEnt = game.eEnt.get(i);
+            if(Physics.Collision(this, tempEnt)){
+                c.removeEntity(tempEnt);
+                Game.HEALTH -= 10;
+                game.setEnemyKilled(game.getEnemyKilled()+1);
+            }
+            
+        }
         
     }
     

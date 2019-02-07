@@ -8,6 +8,7 @@ package game;
 import classes.EnemyEntity;
 import classes.FriendlyEntity;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -45,6 +46,8 @@ public class Game extends Canvas implements Runnable{
     public LinkedList<FriendlyEntity> fEnt;
     public LinkedList<EnemyEntity> eEnt;
     
+    public static int HEALTH = 100 * 2;
+    
     
     //*******Change these to getters and setters
     public static enum STATE{
@@ -70,8 +73,8 @@ public class Game extends Canvas implements Runnable{
         }
         
         tex = new Textures(this);
-        p = new Player(200, 200, tex);
         c = new Controller(tex, this);
+        p = new Player(200, 200, tex, this, c);
         menu = new Menu();
         
         //key loop
@@ -181,6 +184,16 @@ public class Game extends Canvas implements Runnable{
         if(State == STATE.GAME){
             p.render(g);
             c.render(g);
+            
+            g.setColor(Color.gray);
+            g.fillRect(5, 5, 200, 50);
+            
+            g.setColor(Color.green);
+            g.fillRect(5, 5, HEALTH, 50);
+            
+            g.setColor(Color.white);
+            g.drawRect(5, 5, 200, 50);
+            
         }else if(State == STATE.MENU){
             menu.render(g);
         }

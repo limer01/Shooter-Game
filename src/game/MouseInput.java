@@ -11,9 +11,7 @@ public class MouseInput implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-//        public Rectangle playButton = new Rectangle(Game.WIDTH/2 + 120, 150, 100, 50);
-//    public Rectangle helpButton = new Rectangle(Game.WIDTH/2 + 120, 250, 100, 50);
-//    public Rectangle quitButton = new Rectangle(Game.WIDTH/2 + 120, 350, 100, 50);
+
         int mouseX = e.getX();
         int mouseY = e.getY();
         
@@ -24,6 +22,7 @@ public class MouseInput implements MouseListener{
             }
         }
         
+        //Quit Button
         if(mouseX >= Game.WIDTH/2 + 120 && mouseX <=Game.WIDTH/2 + 220){
             if(mouseY >= 350 && mouseY <= 400){
                 System.exit(1);
