@@ -6,6 +6,7 @@
 package game;
 
 import classes.EnemyEntity;
+import classes.FriendlyEntity;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
@@ -36,9 +37,14 @@ public class Enemy extends GameObject implements EnemyEntity{
             x = r.nextInt(640);
         }
         
-        if(Physics.Collision(this, game.fEnt)){
-            c.removeEntity(this);
-            game.setEnemyKilled(game.getEnemyKilled()+ 1); 
+        
+        for(int i = 0; i< game.fEnt.size(); i++){
+            FriendlyEntity tempEnt = game.fEnt.get(i);
+            if(Physics.Collision(this, tempEnt)){
+                c.removeEntity(tempEnt); //Remove Bullet on contact with enemy
+                c.removeEntity(this); //Remove Enemy when hit
+                game.setEnemyKilled(game.getEnemyKilled()+ 1); 
+            }
         }
     }
     

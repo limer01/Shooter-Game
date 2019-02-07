@@ -15,24 +15,19 @@ import java.util.LinkedList;
  */
 public class Physics {
     
-    public static boolean Collision(FriendlyEntity fEnt, LinkedList<EnemyEntity> eEnt){
+    public static boolean Collision(FriendlyEntity fEnt, EnemyEntity eEnt){
         
-        for(int i=0; i<eEnt.size(); i++){
-            
-            if(fEnt.getBounds().intersects(eEnt.get(i).getBounds())){
-                return true;
-            }   
-        }
+        if(fEnt.getBounds().intersects(eEnt.getBounds())){
+            return true;
+        }   
+        
         return false;
     }
     
-    public static boolean Collision(EnemyEntity eEnt, LinkedList<FriendlyEntity> fEnt){
-        
-        for(int i=0; i<fEnt.size(); i++){
-            
-            if(eEnt.getBounds().intersects(fEnt.get(i).getBounds())){
-                return true;
-            }   
+    public static boolean Collision(EnemyEntity eEnt, FriendlyEntity fEnt){
+                  
+        if(eEnt.getBounds().intersects(fEnt.getBounds())){
+            return true;
         }
         return false;
     }

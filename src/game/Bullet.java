@@ -23,10 +23,6 @@ public class Bullet extends GameObject implements FriendlyEntity{
     
     public void tick(){
         y-=10;
-        
-        if(Physics.Collision(this, game.eEnt)){
-            System.out.println("Collision");
-        }
     }
     
     public void render(Graphics g){
