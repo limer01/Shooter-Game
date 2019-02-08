@@ -15,6 +15,7 @@ import java.util.LinkedList;
  */
 public class Physics {
     
+    //Checks collision
     public static boolean Collision(FriendlyEntity fEnt, EnemyEntity eEnt){
         
         if(fEnt.getBounds().intersects(eEnt.getBounds())){
@@ -24,6 +25,7 @@ public class Physics {
         return false;
     }
     
+    //Checks collision 
     public static boolean Collision(EnemyEntity eEnt, FriendlyEntity fEnt){
                   
         if(eEnt.getBounds().intersects(fEnt.getBounds())){

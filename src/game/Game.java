@@ -77,7 +77,6 @@ public class Game extends Canvas implements Runnable{
         p = new Player(200, 200, tex, this, c);
         menu = new Menu();
         
-        //key loop
         this.addKeyListener(new KeyInput(this));
         this.addMouseListener(new MouseInput());
         
@@ -98,7 +97,7 @@ public class Game extends Canvas implements Runnable{
         thread.start();
     }
     
-    //
+
     private synchronized void stop(){
         if(!running)
             return;
@@ -173,7 +172,7 @@ public class Game extends Canvas implements Runnable{
             return;
         }
         
-        Graphics g = bs.getDrawGraphics(); //Draws ou the buffers
+        Graphics g = bs.getDrawGraphics(); //Draws buffered images
         
         g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
         
@@ -188,6 +187,7 @@ public class Game extends Canvas implements Runnable{
             g.setColor(Color.gray);
             g.fillRect(5, 5, 200, 50);
             
+            //healthbar
             g.setColor(Color.green);
             g.fillRect(5, 5, HEALTH, 50);
             

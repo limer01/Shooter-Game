@@ -46,8 +46,8 @@ public class Player extends GameObject implements FriendlyEntity{
         if(y >= 480 - 32)
             y = 480 - 32;
         
+        //Check for collisions with player
         for(int i = 0; i < game.eEnt.size(); i++){
-            
             EnemyEntity tempEnt = game.eEnt.get(i);
             if(Physics.Collision(this, tempEnt)){
                 c.removeEntity(tempEnt);

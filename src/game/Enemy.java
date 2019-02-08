@@ -37,7 +37,7 @@ public class Enemy extends GameObject implements EnemyEntity{
             x = r.nextInt(640);
         }
         
-        
+        //Loop to check if friendly enity colliding with enemy
         for(int i = 0; i< game.fEnt.size(); i++){
             FriendlyEntity tempEnt = game.fEnt.get(i);
             if(Physics.Collision(this, tempEnt)){

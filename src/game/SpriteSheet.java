@@ -7,10 +7,7 @@ package game;
 
 import java.awt.image.BufferedImage;
 
-/**
- *
- * @author Liam
- */
+
 public class SpriteSheet {
     
     private BufferedImage image;
